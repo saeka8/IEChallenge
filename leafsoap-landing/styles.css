@@ -1,0 +1,146 @@
+
+/* LeafSoap minimal stylesheet
+	 Combines design tokens from index.css and small layout styles from App.css
+	 Purpose: provide reasonable defaults for index.html and scripts.js without Tailwind.
+*/
+
+:root {
+	/* Colors in HSL to follow your design tokens */
+	--background: 40 20% 98%; /* H S% L% stored as three tokens for convenience */
+	--foreground: 0 0% 20%;
+
+	--card: 0 0% 100%;
+	--card-foreground: 0 0% 20%;
+
+	--primary-h: 120; --primary-s: 15%; --primary-l: 45%;
+	--primary: hsl(var(--primary-h) var(--primary-s) var(--primary-l));
+	--primary-foreground: 255 255 255;
+
+	--secondary: hsl(30 25% 88%);
+	--muted-foreground: hsl(0 0% 45%);
+	--accent: hsl(25 30% 65%);
+
+	--border: hsl(40 15% 90%);
+	--radius: 1rem;
+
+	--nature-light: hsl(120 20% 95%);
+}
+
+/* Base layout */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body {
+	margin: 0;
+	font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+	background: hsl(var(--background));
+	color: hsl(var(--foreground));
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.container { width: 100%; max-width: 1280px; margin: 0 auto; padding-left: 1rem; padding-right: 1rem; }
+.min-h-screen { min-height: 100vh; }
+
+/* Sections */
+section { padding-top: 4rem; padding-bottom: 4rem; }
+
+.bg-card { background: var(--card); }
+.bg-primary-10 { background-color: color-mix(in srgb, var(--primary) 10%, white 90%); }
+
+.text-center { text-align: center; }
+.text-xl { font-size: 1.125rem; }
+.text-lg { font-size: 1rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-4xl { font-size: 2rem; }
+.text-5xl { font-size: 2.5rem; }
+.text-6xl { font-size: 3rem; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+
+.rounded-3xl { border-radius: 1.5rem; }
+.rounded-2xl { border-radius: 1rem; }
+.rounded-full { border-radius: 9999px; }
+
+.shadow-2xl { box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
+
+.grid { display: grid; gap: 1.5rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+
+/* Responsive grids used in index.html */
+@media (min-width: 1024px) {
+	.lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+	.lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+}
+@media (min-width: 768px) {
+	.md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+	.sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.flex-col { flex-direction: column; }
+.sm\:flex-row { flex-direction: row; }
+.gap-4 { gap: 1rem; }
+
+.inline-flex { display: inline-flex; }
+.bg-secondary\/50 { background-color: rgba(240,220,200,0.5); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; border: 0; cursor: pointer; padding: 0.75rem 1rem; border-radius: 9999px; font-weight: 600; }
+.btn:focus { outline: 3px solid rgba(0,0,0,0.05); }
+.btn-primary { background: var(--primary); color: white; }
+.btn-outline { background: transparent; border: 2px solid rgba(0,0,0,0.06); }
+
+.card { background: var(--card); color: hsl(var(--card-foreground)); border-radius: var(--radius); }
+.card.border-2, .card { border: 2px solid rgba(0,0,0,0.03); }
+.p-8 { padding: 2rem; }
+.p-6 { padding: 1.25rem; }
+
+.w-16 { width: 4rem; }
+.h-16 { height: 4rem; }
+.w-12 { width: 3rem; }
+.h-12 { height: 3rem; }
+
+.text-muted-foreground { color: hsl(var(--muted-foreground)); }
+.text-primary { color: var(--primary); }
+.bg-primary\/10 { background: rgba(0,0,0,0.04); }
+
+.absolute { position: absolute; }
+.relative { position: relative; }
+.inset-0 { top: 0; left: 0; right: 0; bottom: 0; }
+
+.animate-float { transform: translateY(0); }
+.animate-fade-in { opacity: 1; }
+
+/* Sustainability background overlay */
+.relative[style] { position: relative; }
+.relative[style] > .container { position: relative; z-index: 10; }
+.relative[style] > .absolute { z-index: 0; }
+
+/* Modal */
+.modal { display: none; position: fixed; inset: 0; z-index: 9999; align-items: center; justify-content: center; }
+.modal.is-open { display: flex; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+.modal-panel { position: relative; background: var(--card); padding: 1.5rem; border-radius: 0.75rem; width: 100%; max-width: 520px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+.modal-close { position: absolute; top: 0.5rem; right: 0.5rem; background: transparent; border: none; font-size: 1.25rem; cursor: pointer; }
+.modal-actions { display:flex; gap: 0.75rem; margin-top: 1rem; }
+
+/* Footer */
+footer { border-top: 1px solid rgba(0,0,0,0.06); }
+
+/* Utility classes used in HTML */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+.message.success { color: green; }
+.message.error { color: #d9534f; }
+
+/* Small responsive tweaks */
+@media (min-width: 640px) {
+	.sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+
+/* App.css small bits translated */
+#root { max-width: 1280px; margin: 0 auto; padding: 2rem; text-align: center; }
+.logo { height: 6em; padding: 1.5em; transition: filter 300ms; }
+.card { padding: 2em; }
