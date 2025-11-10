@@ -47,6 +47,14 @@ section { padding-top: 4rem; padding-bottom: 4rem; }
 .bg-card { background: var(--card); }
 .bg-primary-10 { background-color: color-mix(in srgb, var(--primary) 10%, white 90%); }
 
+/* Section background variations for visual interest */
+section:nth-of-type(1) { background: linear-gradient(180deg, hsl(120 20% 97%) 0%, hsl(40 20% 98%) 100%); } /* Hero - light green to cream */
+section:nth-of-type(2) { background: hsl(0 0% 100%); } /* How It Works - pure white */
+section:nth-of-type(3) { background: hsl(120 25% 98%); } /* Why LeafSoap - very light green */
+section:nth-of-type(4) { background: linear-gradient(135deg, hsl(120 20% 96%) 0%, hsl(180 15% 97%) 100%); } /* Sustainability - green to light teal */
+section:nth-of-type(5) { background: hsl(40 30% 98%); } /* Testimonials - warm cream */
+section:nth-of-type(6) { background: linear-gradient(180deg, hsl(120 25% 97%) 0%, hsl(40 20% 98%) 100%); } /* Final CTA - light green to cream */
+
 .text-center { text-align: center; }
 .text-xl { font-size: 1.125rem; }
 .text-lg { font-size: 1rem; }
@@ -62,6 +70,98 @@ section { padding-top: 4rem; padding-bottom: 4rem; }
 .rounded-full { border-radius: 9999px; }
 
 .shadow-2xl { box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
+
+/* Hero specific */
+.hero { background: linear-gradient(180deg, rgba(236,250,240,0.9) 0%, rgba(255,255,255,1) 100%); }
+.hero .container { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+@media (min-width: 1024px) {
+ 	/* Make the text column reasonably narrow and let the image column take the remaining space.
+ 	   This lets the image grow as the browser widens while keeping the text readable. */
+ 	.hero .container { grid-template-columns: 1fr 1fr; align-items: center; gap: 3rem; max-width: 1200px !important; margin: 0 auto; }
+ 	/* Ensure the image has large minimum size */
+ 	.hero .relative.animate-float { width: 100%; min-width: 600px; }
+ 	/* Allow the image to fill its container */
+ 	.hero .relative.animate-float img { width: 100%; height: auto; min-width: 600px; object-fit: cover; }
+}
+
+/* On very wide screens allow even more dramatic sizing */
+@media (min-width: 1400px) {
+  .hero .container { max-width: 1400px !important; }
+  .hero .relative.animate-float { min-width: 700px; }
+  .hero .relative.animate-float img { min-width: 700px; }
+}
+
+@media (min-width: 1600px) {
+  .hero .container { max-width: 1600px !important; }
+  .hero .relative.animate-float { min-width: 800px; }
+  .hero .relative.animate-float img { min-width: 800px; }
+}
+
+@media (min-width: 1920px) {
+  .hero .container { max-width: 1800px !important; gap: 4rem; }
+  .hero .relative.animate-float { min-width: 900px; }
+  .hero .relative.animate-float img { min-width: 900px; }
+}
+
+.badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(250,245,240,0.8); padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.9rem; color: #2b2b2b; }
+.badge-icon { display:inline-block; background: rgba(220,245,230,0.9); width: 28px; height: 28px; border-radius: 999px; display:flex; align-items:center; justify-content:center; }
+
+/* Headline scale to match lovable */
+.text-5xl { font-size: 3.25rem; line-height: 1; }
+.text-6xl { font-size: 3.75rem; }
+.text-7xl { font-size: 4.5rem; }
+.leading-tight { line-height: 1.02; }
+
+/* CTA buttons (pill style) */
+.btn-primary { background: hsl(120 15% 35%); color: white; padding: 0.85rem 1.25rem; border-radius: 1.25rem; box-shadow: 0 6px 18px rgba(60,120,60,0.12); }
+.btn-outline { background: white; border: 1px solid rgba(0,0,0,0.08); padding: 0.75rem 1.25rem; }
+
+/* Fixed button width to avoid layout shifts */
+.btn-fixed { width: 220px; max-width: 100%; display: inline-flex; justify-content: center; }
+
+/* Hero image column: prevent image from dictating button size. Image will scale inside a fixed container */
+.hero .relative.animate-float { display: flex; align-items: center; justify-content: center; }
+.hero .relative.animate-float img { width: 100%; height: auto; object-fit: cover; border-radius: 1.25rem; }
+
+/* Keep text column at a comfortable measure so the image can look larger */
+.hero .space-y-8 { max-width: 640px; }
+
+@media (max-width: 1023px) {
+	.btn-fixed { width: 100%; }
+	.hero .relative.animate-float img { max-width: 100%; }
+}
+
+
+/* Card refinements to match lovable spacing and soft border */
+.card { border-radius: 1rem; background: white; }
+.card.border-2 { border: 1px solid rgba(0,0,0,0.05); }
+.card .w-16 { background: rgba(230,245,235,0.8); border-radius: 999px; }
+.card h3 { margin-top: 0.5rem; margin-bottom: 0.25rem; }
+.card p { color: hsl(0 0% 40%); }
+
+/* How It Works section - vertically center content in each card */
+section .grid.md\:grid-cols-3 .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Add more space between icon and text in How It Works cards */
+section .grid.md\:grid-cols-3 .card .w-16 {
+  margin-bottom: 1.5rem;
+}
+
+section .grid.md\:grid-cols-3 .card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Wider content centers */
+.container.mx-auto.max-w-7xl { max-width: 1200px; }
+
+/* Make logo scale smaller in header */
+.logo { height: 48px; width: auto; }
 
 .grid { display: grid; gap: 1.5rem; }
 .gap-6 { gap: 1.5rem; }
@@ -118,22 +218,193 @@ section { padding-top: 4rem; padding-bottom: 4rem; }
 .relative[style] > .container { position: relative; z-index: 10; }
 .relative[style] > .absolute { z-index: 0; }
 
+/* Every Case Makes a Difference - bubble background with blur */
+.sustainability-section {
+  background-image: url('assets/bubble.jpeg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.sustainability-section .absolute {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
 /* Modal */
 .modal { display: none; position: fixed; inset: 0; z-index: 9999; align-items: center; justify-content: center; }
 .modal.is-open { display: flex; }
-.modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
-.modal-panel { position: relative; background: var(--card); padding: 1.5rem; border-radius: 0.75rem; width: 100%; max-width: 520px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
-.modal-close { position: absolute; top: 0.5rem; right: 0.5rem; background: transparent; border: none; font-size: 1.25rem; cursor: pointer; }
-.modal-actions { display:flex; gap: 0.75rem; margin-top: 1rem; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.modal-panel { 
+  position: relative; 
+  background: linear-gradient(135deg, #ffffff 0%, #f8fdf9 100%);
+  padding: 3rem 2.5rem; 
+  border-radius: 1.5rem; 
+  width: 100%; 
+  max-width: 480px; 
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+  z-index: 10000;
+  border: 1px solid rgba(120, 180, 140, 0.2);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.modal-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--primary) 0%, hsl(120, 20%, 50%) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 8px 20px rgba(80, 140, 100, 0.3);
+}
+
+.modal-icon img {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1);
+}
+
+.modal-panel h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: hsl(var(--foreground));
+}
+
+.modal-panel p {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+#email-form input[type="email"] {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#email-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(80, 140, 100, 0.1);
+}
+
+.modal-close { 
+  position: absolute; 
+  top: 1rem; 
+  right: 1rem; 
+  background: rgba(0,0,0,0.05); 
+  border: none; 
+  font-size: 1.5rem; 
+  cursor: pointer; 
+  color: hsl(var(--foreground)); 
+  line-height: 1; 
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close:hover { 
+  background: rgba(0,0,0,0.1); 
+  transform: rotate(90deg);
+}
+
+.modal-actions { 
+  display: flex; 
+  gap: 0.75rem; 
+  margin-top: 1rem; 
+}
+
+.btn-full {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+}
+
+#email-form-message {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+/* Testimonials section - left align content */
+.testimonial-card {
+  text-align: left !important;
+  display: block !important;
+  align-items: flex-start !important;
+}
+
+.testimonial-card * {
+  text-align: left !important;
+}
+
+.testimonial-card .flex.gap-1 {
+  justify-content: flex-start !important;
+  display: flex !important;
+}
+
+.testimonial-card .border-t {
+  display: block !important;
+}
+
+.testimonial-card p {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
 
 /* Footer */
 footer { border-top: 1px solid rgba(0,0,0,0.06); }
+
+/* Footer horizontal alignment */
+footer .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer .flex.gap-6 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Footer links - remove blue color */
+footer a {
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: var(--primary);
+}
 
 /* Utility classes used in HTML */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
 .message.success { color: green; }
 .message.error { color: #d9534f; }
+.message.info { color: #5bc0de; }
 
 /* Small responsive tweaks */
 @media (min-width: 640px) {
@@ -144,3 +415,100 @@ footer { border-top: 1px solid rgba(0,0,0,0.06); }
 #root { max-width: 1280px; margin: 0 auto; padding: 2rem; text-align: center; }
 .logo { height: 6em; padding: 1.5em; transition: filter 300ms; }
 .card { padding: 2em; }
+
+/* SVG Icon Colors */
+/* Override SVG fill colors to match brand */
+.badge-icon img,
+.feature img,
+.card img[src*="hand.svg"],
+.card img[src*="water.svg"],
+.card img[src*="flare.svg"],
+.card img[src*="Leaf.svg"],
+.card img[src*="recycle.svg"],
+.card img[src*="package.svg"] {
+  filter: invert(42%) sepia(15%) saturate(1000%) hue-rotate(80deg) brightness(95%) contrast(90%);
+  display: block;
+  margin: 0 auto;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Ensure icon containers use flexbox for perfect centering */
+.w-16.h-16,
+.w-12.h-12 {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+.w-16 img,
+.w-12 img {
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  object-fit: contain !important;
+}
+
+/* Additional specific targeting for How It Works icons */
+.card .w-16 img {
+  width: 2rem !important;
+  height: 2rem !important;
+}
+
+/* Force centering for SVG within circular containers */
+.rounded-full {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.rounded-full img {
+  align-self: center !important;
+}
+
+/* Star rating icons - golden/yellow color */
+img[src*="star.svg"] {
+  filter: invert(70%) sepia(80%) saturate(500%) hue-rotate(10deg) brightness(100%) contrast(100%);
+}
+
+/* Footer leaf icon - primary green */
+footer img[src*="Leaf.svg"] {
+  filter: invert(42%) sepia(15%) saturate(1000%) hue-rotate(80deg) brightness(95%) contrast(90%);
+}
+
+/* Why LeafSoap section box styling */
+.feature {
+  background: var(--card);
+  border: 2px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
+/* Sustainability section - horizontally align stats */
+.grid.sm\:grid-cols-3 .space-y-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .grid.sm\:grid-cols-3 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+  
+  .grid.sm\:grid-cols-3 .space-y-2 {
+    flex: 0 1 auto;
+    min-width: 200px;
+  }
+}

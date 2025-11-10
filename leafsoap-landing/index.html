@@ -4,19 +4,44 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>LeafSoap — Clean Hands. Clean Planet.</title>
+  
+  <!-- Configuration (load before analytics) -->
+  <script src="config.js"></script>
+  
+  <!-- Google Analytics 4 -->
+  <script>
+    // Load GA4 with config
+    (function() {
+      if (window.CONFIG && window.CONFIG.GA4_MEASUREMENT_ID) {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.CONFIG.GA4_MEASUREMENT_ID;
+        document.head.appendChild(script);
+        
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', window.CONFIG.GA4_MEASUREMENT_ID);
+        window.gtag = gtag;
+      }
+    })();
+  </script>
+  
   <!-- Link your CSS file here (you said you'd provide CSS later) -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="min-h-screen">
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-gradient-to-b from-nature-light to-background py-20 px-4 sm:px-6 lg:px-8">
+  <!-- Hero Section -->
+  <section class="hero relative overflow-hidden bg-gradient-to-b from-nature-light to-background py-20 px-4 sm:px-6 lg:px-8">
       <div class="container mx-auto max-w-7xl">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="space-y-8 animate-fade-in">
-            <div class="inline-flex items-center gap-2 bg-secondary/50 rounded-full px-4 py-2 text-sm font-medium">
-              <img src="assets/leafsoap-logo.svg" alt="LeafSoap" class="logo" />
-              <span>Zero Waste Hygiene</span>
+            <div class="badge">
+              <span class="badge-icon" aria-hidden="true">
+                <img src="assets/Leaf.svg" alt="" class="w-5 h-5 inline-block" />
+              </span>
+              <span class="badge-text">Zero Waste Hygiene</span>
             </div>
             <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
               Clean Hands.<br />
@@ -26,17 +51,17 @@
               Refillable dissolvable soap sheets — a smarter, sustainable alternative to wet wipes and bottled soap.
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
-              <button class="btn btn-primary size-lg text-lg px-8 rounded-full" data-open-modal>
+              <button class="btn btn-primary btn-fixed size-lg text-lg px-8 rounded-full" data-open-modal>
                 Join the Clean Movement
               </button>
-              <button class="btn btn-outline size-lg text-lg px-8 rounded-full">
+              <button class="btn btn-outline btn-fixed size-lg text-lg px-8 rounded-full">
                 Shop Now
               </button>
             </div>
           </div>
           <div class="relative animate-float">
             <div class="absolute inset-0 bg-primary/10 blur-3xl rounded-full" aria-hidden="true"></div>
-            <img src="assets/product-hand.jpg" alt="LeafSoap wooden case with dissolvable soap sheets" class="relative rounded-3xl shadow-2xl w-full" />
+            <img src="assets/greenSoap.jpeg" alt="LeafSoap wooden case with dissolvable soap sheets" class="relative rounded-3xl shadow-2xl w-full" />
           </div>
         </div>
       </div>
@@ -51,19 +76,25 @@
         </div>
         <div class="grid md:grid-cols-3 gap-8">
           <div class="card p-8 text-center space-y-4 border-2 rounded-3xl">
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">✋</div>
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+              <img src="assets/hand.svg" alt="" class="w-8 h-8 mx-auto" aria-hidden="true" />
+            </div>
             <h3 class="text-2xl font-semibold">Pull a sheet</h3>
             <p class="text-muted-foreground">Take one ultra-thin soap sheet from your beautiful wooden case.</p>
           </div>
 
           <div class="card p-8 text-center space-y-4 border-2 rounded-3xl">
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">💧</div>
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+              <img src="assets/water.svg" alt="" class="w-8 h-8 mx-auto" aria-hidden="true" />
+            </div>
             <h3 class="text-2xl font-semibold">Add water</h3>
             <p class="text-muted-foreground">Wet your hands and watch the sheet dissolve instantly into rich lather.</p>
           </div>
 
           <div class="card p-8 text-center space-y-4 border-2 rounded-3xl">
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">✨</div>
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+              <img src="assets/flare.svg" alt="" class="w-8 h-8 mx-auto" aria-hidden="true" />
+            </div>
             <h3 class="text-2xl font-semibold">Wash and go</h3>
             <p class="text-muted-foreground">Each sheet gives you a full hand wash with zero waste left behind.</p>
           </div>
@@ -80,25 +111,33 @@
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div class="feature bg-secondary/30 p-6 rounded-2xl space-y-3">
-            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">🌿</div>
+            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+              <img src="assets/Leaf.svg" alt="" class="w-6 h-6" aria-hidden="true" />
+            </div>
             <h3 class="text-xl font-semibold">Natural Materials</h3>
             <p class="text-muted-foreground">Beautiful wooden reusable case crafted from sustainable sources.</p>
           </div>
 
           <div class="feature bg-secondary/30 p-6 rounded-2xl space-y-3">
-            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">♻️</div>
+            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+              <img src="assets/recycle.svg" alt="" class="w-6 h-6" aria-hidden="true" />
+            </div>
             <h3 class="text-xl font-semibold">Compostable Refills</h3>
             <p class="text-muted-foreground">Every sheet breaks down naturally, leaving no trace behind.</p>
           </div>
 
           <div class="feature bg-secondary/30 p-6 rounded-2xl space-y-3">
-            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">📦</div>
+            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+              <img src="assets/package.svg" alt="" class="w-6 h-6" aria-hidden="true" />
+            </div>
             <h3 class="text-xl font-semibold">Travel Perfect</h3>
             <p class="text-muted-foreground">Compact design fits anywhere. TSA-friendly and leak-proof.</p>
           </div>
 
           <div class="feature bg-secondary/30 p-6 rounded-2xl space-y-3">
-            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">💧</div>
+            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+              <img src="assets/water.svg" alt="" class="w-6 h-6" aria-hidden="true" />
+            </div>
             <h3 class="text-xl font-semibold">Biodegradable</h3>
             <p class="text-muted-foreground">Plant-based formula that's gentle on skin and earth.</p>
           </div>
@@ -107,7 +146,7 @@
     </section>
 
     <!-- Sustainability Section -->
-    <section class="py-24 px-4 sm:px-6 lg:px-8 relative" style="background-image: url('assets/sustainability-bg.jpg'); background-size:cover; background-position:center;">
+    <section class="py-24 px-4 sm:px-6 lg:px-8 relative sustainability-section">
       <div class="absolute inset-0 bg-background/90" aria-hidden="true"></div>
       <div class="container mx-auto max-w-4xl relative z-10">
         <div class="text-center space-y-6">
@@ -140,9 +179,13 @@
         </div>
         <div class="grid md:grid-cols-3 gap-8">
 
-          <div class="card p-8 space-y-4 rounded-3xl border-2">
+          <div class="card p-8 space-y-4 rounded-3xl border-2 testimonial-card">
             <div class="flex gap-1">
-              <span>✨✨✨✨✨</span>
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
             </div>
             <p class="text-lg italic">"The design is absolutely stunning. I keep it on my desk as decor. Plus, knowing I'm reducing waste feels amazing."</p>
             <div class="pt-4 border-t">
@@ -151,9 +194,13 @@
             </div>
           </div>
 
-          <div class="card p-8 space-y-4 rounded-3xl border-2">
+          <div class="card p-8 space-y-4 rounded-3xl border-2 testimonial-card">
             <div class="flex gap-1">
-              <span>✨✨✨✨✨</span>
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
             </div>
             <p class="text-lg italic">"Perfect for travel! No more leaky bottles in my bag. The sheets take up practically no space."</p>
             <div class="pt-4 border-t">
@@ -162,9 +209,13 @@
             </div>
           </div>
 
-          <div class="card p-8 space-y-4 rounded-3xl border-2">
+          <div class="card p-8 space-y-4 rounded-3xl border-2 testimonial-card">
             <div class="flex gap-1">
-              <span>✨✨✨✨✨</span>
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
+              <img src="assets/star.svg" alt="" class="w-5 h-5" aria-hidden="true" />
             </div>
             <p class="text-lg italic">"The scent is so fresh and natural. My kids love using these instead of regular soap. Brilliant concept!"</p>
             <div class="pt-4 border-t">
@@ -184,7 +235,6 @@
         <p class="text-xl text-muted-foreground max-w-2xl mx-auto">Make the switch to sustainable hand washing. Your hands—and the planet—will thank you.</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
           <button class="btn btn-primary size-lg text-lg px-8 rounded-full" data-open-modal>Pre-order Now</button>
-          <button class="btn btn-outline size-lg text-lg px-8 rounded-full">Learn More</button>
         </div>
       </div>
     </section>
@@ -194,17 +244,39 @@
       <div class="modal-backdrop" data-modal-backdrop></div>
       <div class="modal-panel" role="document" aria-labelledby="email-modal-title">
         <button class="modal-close" aria-label="Close modal" data-close-modal>×</button>
-        <h3 id="email-modal-title">Join the Clean Movement</h3>
-        <p class="text-muted-foreground">Get updates and early access to pre-orders.</p>
+        <div class="modal-header">
+          <div class="modal-icon">
+            <img src="assets/email.svg" alt="" aria-hidden="true" />
+          </div>
+          <h3 id="email-modal-title">Join the Clean Movement</h3>
+          <p class="text-muted-foreground">Get updates and early access to pre-orders.</p>
+        </div>
         <form id="email-form">
           <label for="email-input" class="sr-only">Email address</label>
           <input id="email-input" name="email" type="email" placeholder="you@example.com" required />
           <div class="modal-actions">
-            <button type="submit" class="btn btn-primary">Notify Me</button>
-            <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+            <button type="submit" class="btn btn-primary btn-full">Notify Me</button>
           </div>
           <div id="email-form-message" role="status" aria-live="polite"></div>
         </form>
+      </div>
+    </div>
+
+    <!-- Shop Now Modal -->
+    <div id="shop-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" data-shop-modal-backdrop></div>
+      <div class="modal-panel" role="document" aria-labelledby="shop-modal-title">
+        <button class="modal-close" aria-label="Close modal" data-close-shop-modal>×</button>
+        <div class="modal-header">
+          <div class="modal-icon">
+            <img src="assets/package.svg" alt="" aria-hidden="true" />
+          </div>
+          <h3 id="shop-modal-title">Coming Soon!</h3>
+          <p class="text-muted-foreground">We're working hard to bring our products to you! Thank you for your interest!</p>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-primary btn-full" data-close-shop-modal>Got it!</button>
+        </div>
       </div>
     </div>
 
@@ -213,7 +285,7 @@
       <div class="container mx-auto max-w-6xl">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
           <div class="flex items-center gap-2">
-            <img src="assets/leafsoap-logo.svg" alt="LeafSoap" class="logo" />
+            <img src="assets/Leaf.svg" alt="" class="w-8 h-8" aria-hidden="true" />
             <span class="text-xl font-semibold">LeafSoap</span>
           </div>
           <p class="text-muted-foreground text-center">© 2025 LeafSoap. Clean hands, clean planet.</p>

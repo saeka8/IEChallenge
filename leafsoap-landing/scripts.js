@@ -65,10 +65,38 @@
         showMessage('Please enter a valid email address.', 'error');
         return;
       }
-      // Simulate a network request
-      showMessage('Thanks! You will be notified about pre-orders.', 'success');
-      emailForm.reset();
-      setTimeout(() => closeModal(), 1200);
+      
+      // Get URL from config
+      const GOOGLE_SCRIPT_URL = window.CONFIG?.GOOGLE_SCRIPT_URL || '';
+      
+      if (!GOOGLE_SCRIPT_URL) {
+        showMessage('Configuration error. Please contact support.', 'error');
+        return;
+      }
+      
+      // Show loading message
+      showMessage('Submitting...', 'info');
+      
+      // Send to Google Sheets
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          'email': email
+        })
+      })
+      .then(() => {
+        showMessage('Thanks! You will be notified about pre-orders.', 'success');
+        emailForm.reset();
+        setTimeout(() => closeModal(), 1500);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        showMessage('Something went wrong. Please try again.', 'error');
+      });
     });
   }
 
@@ -90,3 +118,62 @@
     isOpen
   };
 })();
+
+// Shop Now button handler
+document.addEventListener('DOMContentLoaded', function() {
+  const shopModal = document.querySelector('#shop-modal');
+  const shopModalBackdrop = document.querySelector('[data-shop-modal-backdrop]');
+  const closeShopButtons = document.querySelectorAll('[data-close-shop-modal]');
+  
+  function openShopModal() {
+    if (!shopModal) return;
+    shopModal.setAttribute('aria-hidden', 'false');
+    shopModal.classList.add('is-open');
+  }
+  
+  function closeShopModal() {
+    if (!shopModal) return;
+    shopModal.setAttribute('aria-hidden', 'true');
+    shopModal.classList.remove('is-open');
+  }
+  
+  // Attach close handlers
+  closeShopButtons.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeShopModal();
+  }));
+  
+  // Clicking backdrop closes modal
+  if (shopModalBackdrop) {
+    shopModalBackdrop.addEventListener('click', () => closeShopModal());
+  }
+  
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && shopModal.getAttribute('aria-hidden') === 'false') {
+      closeShopModal();
+    }
+  });
+  
+  // Find all Shop Now buttons
+  const shopButtons = document.querySelectorAll('a[href="#"], button');
+  
+  shopButtons.forEach(button => {
+    const buttonText = button.textContent.trim().toLowerCase();
+    if (buttonText.includes('shop now')) {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Track Shop Now click in Google Analytics
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'shop_now_click', {
+            'event_category': 'engagement',
+            'event_label': 'Shop Now Button'
+          });
+        }
+        
+        openShopModal();
+      });
+    }
+  });
+});
