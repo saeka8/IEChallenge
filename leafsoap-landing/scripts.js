@@ -90,6 +90,15 @@
       })
       .then(() => {
         showMessage('Thanks! You will be notified about pre-orders.', 'success');
+        
+        // Track email submission in Google Analytics
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'email_signup', {
+            'event_category': 'engagement',
+            'event_label': 'Email Form Submission'
+          });
+        }
+        
         emailForm.reset();
         setTimeout(() => closeModal(), 1500);
       })
